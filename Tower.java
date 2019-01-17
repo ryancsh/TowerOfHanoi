@@ -9,6 +9,8 @@ class Tower{
   }
 
   public void add(Disc d){
+    if (numDiscs > 0 && d.size() > tower[0].size()) throw new RuntimeException("Trying to move larger disc above a smaller disc");
+
     for(int i = numDiscs; i > 0; i--){
       tower[i] = tower[i-1];
     }
