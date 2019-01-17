@@ -53,7 +53,7 @@ class Tower{
     return numDiscs;
   }
 
-  public int getDisc(int slotNumber){
+  public Disc getDisc(int slotNumber){
     int index = slotNumber + numDiscs - tower.length;
 
     if(index < 0) return emptyDisc;
