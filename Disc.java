@@ -8,4 +8,9 @@ class Disc{
   public int size(){
     return size;
   }
+
+  public String toString(){
+    if(size == 0) return " ";
+    else return "" + size;
+  }
 }
