@@ -1,15 +1,12 @@
 class Board{
   static final int DefaultTowers = 3;
+  static final int DefaultDiscs = 7;
 
   private int numDiscs;
   private Tower[] towers;
 
   public Board(){
-    this(DefaultTowers);
-  }
-
-  public Board(int numDiscs){
-    this(numDiscs, DefaultTowers);
+    this(DefaultDiscs, DefaultTowers);
   }
 
   public Board(int numDiscs, int numTowers){
@@ -27,8 +24,9 @@ class Board{
 
   public String toString(){
     StringBuilder s = new StringBuilder();
+    s.append("\n");
 
-    for(int j = 0; j < towers[0].size(); j++){
+    for(int j = 0; j < towers[0].maxCapacity(); j++){
       for(int i = 0; i < towers.length; i++){
         s.append(towers[i].getDisc(j));
         s.append("\t");
@@ -39,6 +37,19 @@ class Board{
     return s.toString();
   }
 
+  public void move(int from, int to){
+    towers[to].add(towers[from].remove());
+  }
+
+  public void display(){
+    System.out.println(this);
+  }
+
   public void solve(){
+    display();
+    move(0, 1);
+    move(0, 2);
+    move(1, 2);
+    display();
   }
 }
