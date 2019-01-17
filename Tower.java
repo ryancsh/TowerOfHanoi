@@ -1,7 +1,8 @@
 class Tower{
   static final int DefaultSize = 5;
-  Disc[] tower;
+  private Disc[] tower;
   int numDiscs;
+  Disc emptyDisc = new Disc(0);
 
   public Tower(){
     this(DefaultSize);
@@ -12,8 +13,24 @@ class Tower{
     numDiscs = 0;
   }
 
+  public void ensureCapacity(int newSize){
+    if(newSize > tower.length){
+      Disc[] newTower = new Disc[tower.length * 2];
+      for(int i = 0; i < tower.length; i++){
+        newTower[i] = tower[i];
+      }
+      tower = newTower;
+    }
+  }
+
   public void add(Disc d){
-    tower[numDiscs] = d;
+    ensureCapacity(numDiscs + 1);
+
+    for(int i = numDiscs; i > 0; i--){
+      tower[i] = tower[i-1];
+    }
+
+    tower[0] = d;
     numDiscs++;
   }
 
@@ -26,5 +43,20 @@ class Tower{
     numDiscs--;
 
     return returnValue;
+  }
+
+  public int maxCapacity(){
+    return tower.length;
+  }
+
+  public int size(){
+    return numDiscs;
+  }
+
+  public int getDisc(int slotNumber){
+    int index = slotNumber + numDiscs - tower.length;
+
+    if(index < 0) return emptyDisc;
+    else return tower[index];
   }
 }
