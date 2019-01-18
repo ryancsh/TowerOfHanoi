@@ -1,8 +1,16 @@
 class Disc{
   private int size;
+  private String stringRepresentation;
   
   public Disc(int size){
     this.size = size;
+
+    StringBuilder s = new StringBuilder();
+    for(int i = 0; i < size; i++){
+      s.append('*');
+    }
+    s.append(' ');
+    stringRepresentation = s.toString();
   }
 
   public int size(){
@@ -10,7 +18,6 @@ class Disc{
   }
 
   public String toString(){
-    if(size == 0) return " ";
-    else return "" + size;
+    return stringRepresentation;
   }
 }
